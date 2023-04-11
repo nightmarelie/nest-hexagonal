@@ -1,15 +1,15 @@
-export class Money {
+export class MoneyEntity {
   constructor(
     private readonly _amount: number,
     private readonly _currency: string,
   ) {}
 
-  static zero(currency: string): Money {
-    return new Money(0, currency);
+  static zero(currency: string): MoneyEntity {
+    return new MoneyEntity(0, currency);
   }
 
-  static of(amount: number, currency: string): Money {
-    return new Money(amount, currency);
+  static of(amount: number, currency: string): MoneyEntity {
+    return new MoneyEntity(amount, currency);
   }
 
   get amount(): number {
@@ -20,17 +20,17 @@ export class Money {
     return this._currency;
   }
 
-  static add = (a: Money, b: Money): Money => {
+  static add = (a: MoneyEntity, b: MoneyEntity): MoneyEntity => {
     if (a.currency !== b.currency) {
       throw new Error('Currencies must match');
     }
-    return new Money(a.amount + b.amount, a.currency);
+    return new MoneyEntity(a.amount + b.amount, a.currency);
   };
 
-  static minus = (a: Money, b: Money): Money => {
+  static minus = (a: MoneyEntity, b: MoneyEntity): MoneyEntity => {
     if (a.currency !== b.currency) {
       throw new Error('Currencies must match');
     }
-    return new Money(a.amount - b.amount, a.currency);
+    return new MoneyEntity(a.amount - b.amount, a.currency);
   };
 }
