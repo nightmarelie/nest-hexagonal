@@ -20,6 +20,10 @@ export class MoneyEntity {
     return this._currency;
   }
 
+  negate(currency: string) {
+    return new MoneyEntity(-this.amount, currency);
+  }
+
   static add = (a: MoneyEntity, b: MoneyEntity): MoneyEntity => {
     if (a.currency !== b.currency) {
       throw new Error('Currencies must match');
