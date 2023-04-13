@@ -4,7 +4,7 @@ import { MoneyEntity } from './money.entity';
 
 export type AccountId = number;
 
-class AccountEntity {
+export class AccountEntity {
   constructor(
     private readonly _id: AccountId,
     private readonly _baseLineBalance: MoneyEntity,
