@@ -24,6 +24,10 @@ export class MoneyEntity {
     return new MoneyEntity(-this.amount, currency);
   }
 
+  isPositiveOrZero() {
+    return this.amount >= 0;
+  }
+
   static add = (a: MoneyEntity, b: MoneyEntity): MoneyEntity => {
     if (a.currency !== b.currency) {
       throw new Error('Currencies must match');
