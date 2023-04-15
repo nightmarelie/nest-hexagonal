@@ -1,4 +1,4 @@
-import { AccountEntity } from '../../entries/account.entity';
+import { AccountEntity } from '../../entities/account.entity';
 
 export interface UpdateAccountStatePort {
   updateAccountState(account: AccountEntity): Promise<void>;

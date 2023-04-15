@@ -1,5 +1,5 @@
-import { MoneyEntity } from '../../entries/money.entity';
-import { AccountId } from '../../entries/account.entity';
+import { MoneyEntity } from '../../entities/money.entity';
+import { AccountId } from '../../entities/account.entity';
 
 export class SendMoneyCommand {
   constructor(

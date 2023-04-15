@@ -1,4 +1,4 @@
-import { AccountId } from '../entries/account.entity';
+import { AccountId } from '../entities/account.entity';
 import { LoadAccountPort } from '../ports/out/load-account.port';
 
 export class GetAccountBalanceService {
