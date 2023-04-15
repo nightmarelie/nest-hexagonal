@@ -1,4 +1,11 @@
-import { mock, when, anything, anyString, instance } from 'ts-mockito';
+import {
+  mock,
+  when,
+  anything,
+  anyString,
+  instance,
+  anyNumber,
+} from 'ts-mockito';
 import { LoadAccountPort } from '../ports/out/load-account.port';
 import { UpdateAccountStatePort } from '../ports/out/update-account-state.port';
 import { AccountEntity, AccountId } from '../entities/account.entity';
@@ -14,10 +21,10 @@ describe('SendMoneyService', () => {
     function givenAnAccountWithId(id: AccountId) {
       const mockedAccountEntity = mock(AccountEntity);
       when(mockedAccountEntity.id).thenReturn(id);
-      when(mockedAccountEntity.withdraw(anything(), anyString())).thenReturn(
+      when(mockedAccountEntity.withdraw(anything(), anyNumber())).thenReturn(
         true,
       );
-      when(mockedAccountEntity.deposit(anything(), anyString())).thenReturn(
+      when(mockedAccountEntity.deposit(anything(), anyNumber())).thenReturn(
         true,
       );
       const account = instance(mockedAccountEntity);
