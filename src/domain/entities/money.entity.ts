@@ -4,6 +4,12 @@ export class MoneyEntity {
     private readonly _currency: string,
   ) {}
 
+  static equals(money1: MoneyEntity, money2: MoneyEntity) {
+    return (
+      money1.amount === money2.amount && money1.currency === money2.currency
+    );
+  }
+
   static zero(currency: string): MoneyEntity {
     return new MoneyEntity(0, currency);
   }
