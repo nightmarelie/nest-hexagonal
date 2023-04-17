@@ -1,11 +1,4 @@
-import {
-  mock,
-  when,
-  anything,
-  anyString,
-  instance,
-  anyNumber,
-} from 'ts-mockito';
+import { mock, when, anything, instance, anyNumber } from 'ts-mockito';
 import { LoadAccountPort } from '../ports/out/load-account.port';
 import { UpdateAccountStatePort } from '../ports/out/update-account-state.port';
 import { AccountEntity, AccountId } from '../entities/account.entity';
