@@ -7,14 +7,14 @@ import {
 import { MoneyEntity } from '../../domain/entities/money.entity';
 import { AccountId } from '../../domain/entities/account.entity';
 
-@Controller('/account/send')
+@Controller('/account')
 export class SendMoneyController {
   constructor(
     @Inject(SendMoneyUseCaseSymbol)
     private readonly _sendMoneyService: SendMoneyUseCase,
   ) {}
 
-  @Get('/')
+  @Get('/send-money')
   async sendMoney(
     @Query('sourceAccountId') sourceAccountId: AccountId,
     @Query('targetAccountId') targetAccountId: AccountId,
