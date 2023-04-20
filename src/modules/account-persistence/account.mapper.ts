@@ -2,8 +2,8 @@ import { MoneyEntity } from '../../domain/entities/money.entity';
 import { AccountEntity } from '../../domain/entities/account.entity';
 import { ActivityWindowEntity } from '../../domain/entities/activity-window.entity';
 import { ActivityEntity } from '../../domain/entities/activity.entity';
+import { AccountOrmEntity } from './account.orm-entity';
 
-type AccountOrmEntity = AccountEntity;
 type ActivityOrmEntity = ActivityEntity;
 
 export class AccountMapper {
