@@ -21,7 +21,9 @@ describe('SendMoneyService', () => {
         true,
       );
       const account = instance(mockedAccountEntity);
-      when(loadAccountPort.loadAccount(id)).thenReturn(account);
+      when(loadAccountPort.loadAccount(id)).thenReturn(
+        Promise.resolve(account),
+      );
       return account;
     }
 
@@ -38,7 +40,7 @@ describe('SendMoneyService', () => {
       instance(loadAccountPort),
       instance(updateAccountStatePort),
     );
-    const result = sendMoneyService.sendMoney(command);
+    const result = await sendMoneyService.sendMoney(command);
 
     expect(result).toBeTruthy();
   });
