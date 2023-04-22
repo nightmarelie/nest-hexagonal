@@ -20,13 +20,13 @@ export class AccountPersistenceAdapterService
   ) {}
 
   async loadAccount(accountId: AccountId): Promise<AccountEntity> {
-    const account = await this._accountRepository.findOne({
+    const account = await this._accountRepository.findOneBy({
       userId: accountId,
     });
     if (account === undefined) {
       throw new Error('Account not found');
     }
-    const activities = await this._activityRepository.find({
+    const activities = await this._activityRepository.findOneBy({
       ownerAccountId: accountId,
     });
 
