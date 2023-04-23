@@ -26,14 +26,14 @@ export class AccountPersistenceAdapterService
     if (account === undefined) {
       throw new Error('Account not found');
     }
-    const activities = await this._activityRepository.findOneBy({
+    const activities = await this._activityRepository.findBy({
       ownerAccountId: accountId,
     });
 
     return AccountMapper.mapToDomain(account, activities);
   }
 
-  updateActivities(account: AccountEntity) {
+  async updateActivities(account: AccountEntity) {
     account.activityWindow.activities.forEach((activity) => {
       if (activity.id === null) {
         this._activityRepository.save(AccountMapper.mapToOrmEntity(activity));

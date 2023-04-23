@@ -3,8 +3,7 @@ import { AccountEntity } from '../../domain/entities/account.entity';
 import { ActivityWindowEntity } from '../../domain/entities/activity-window.entity';
 import { ActivityEntity } from '../../domain/entities/activity.entity';
 import { AccountOrmEntity } from './account.orm-entity';
-
-type ActivityOrmEntity = ActivityEntity;
+import { ActivityOrmEntity } from './activity.orm-entity';
 
 export class AccountMapper {
   static mapToDomain(
@@ -15,6 +14,7 @@ export class AccountMapper {
     const baselineBalance = activityWindowEntity.calculateBalance(
       account.userId,
     );
+
     return new AccountEntity(
       account.userId,
       baselineBalance,
@@ -26,17 +26,20 @@ export class AccountMapper {
     activities: ActivityOrmEntity[],
   ): ActivityWindowEntity {
     const activityWindowEntity = new ActivityWindowEntity();
+
     activities.forEach((activity) => {
       const activityEntity = new ActivityEntity(
         activity.ownerAccountId,
         activity.sourceAccountId,
         activity.targetAccountId,
         new Date(activity.timestamp),
-        MoneyEntity.of(activity.amount),
+        MoneyEntity.of(activity.amount, 'USD'),
         activity.id,
       );
+
       activityWindowEntity.addActivity(activityEntity);
     });
+
     return activityWindowEntity;
   }
 
@@ -46,10 +49,12 @@ export class AccountMapper {
     activityOrmEntity.ownerAccountId = activity.ownerAccountId;
     activityOrmEntity.sourceAccountId = activity.sourceAccountId;
     activityOrmEntity.targetAccountId = activity.targetAccountId;
-    activityOrmEntity.amount = activity.money.amount.toNumber();
+    activityOrmEntity.amount = activity.money.amount;
+
     if (activity.id !== null) {
       activityOrmEntity.id = activity.id;
     }
+
     return activityOrmEntity;
   }
 }
