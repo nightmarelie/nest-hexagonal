@@ -9,13 +9,13 @@ export class ActivityOrmEntity {
   timestamp: number;
 
   @Column()
-  ownerAccountId: string;
+  ownerAccountId: number;
 
   @Column()
-  sourceAccountId: string;
+  sourceAccountId: number;
 
   @Column()
-  targetAccountId: string;
+  targetAccountId: number;
 
   @Column()
   amount: number;
