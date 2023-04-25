@@ -25,7 +25,9 @@ export class SendMoneyController {
       targetAccountId,
       MoneyEntity.of(amount, 'USD'),
     );
+
     const result = await this._sendMoneyService.sendMoney(sendMoneyCommand);
+
     return { result };
   }
 }

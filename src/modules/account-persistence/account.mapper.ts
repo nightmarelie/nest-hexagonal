@@ -45,6 +45,7 @@ export class AccountMapper {
 
   static mapToOrmEntity(activity: ActivityEntity) {
     const activityOrmEntity = new ActivityOrmEntity();
+
     activityOrmEntity.timestamp = activity.timestamp.getTime();
     activityOrmEntity.ownerAccountId = activity.ownerAccountId;
     activityOrmEntity.sourceAccountId = activity.sourceAccountId;
