@@ -1,6 +1,8 @@
+import { BigNumber } from 'bignumber.js';
+
 export class MoneyEntity {
   constructor(
-    private readonly _amount: number,
+    private readonly _amount: BigNumber,
     private readonly _currency: string,
   ) {}
 
@@ -11,14 +13,14 @@ export class MoneyEntity {
   }
 
   static zero(currency: string): MoneyEntity {
-    return new MoneyEntity(0, currency);
+    return new MoneyEntity(new BigNumber(0), currency);
   }
 
-  static of(amount: number, currency: string): MoneyEntity {
+  static of(amount: BigNumber, currency: string): MoneyEntity {
     return new MoneyEntity(amount, currency);
   }
 
-  get amount(): number {
+  get amount(): BigNumber {
     return this._amount;
   }
 
@@ -27,24 +29,24 @@ export class MoneyEntity {
   }
 
   negate(currency: string) {
-    return new MoneyEntity(-this.amount, currency);
+    return new MoneyEntity(this.amount.negated(), currency);
   }
 
   isPositiveOrZero() {
-    return this.amount >= 0;
+    return this.amount.lte(0);
   }
 
   static add = (a: MoneyEntity, b: MoneyEntity): MoneyEntity => {
     if (a.currency !== b.currency) {
       throw new Error('Currencies must match');
     }
-    return new MoneyEntity(a.amount + b.amount, a.currency);
+    return new MoneyEntity(a.amount.plus(b.amount), a.currency);
   };
 
   static minus = (a: MoneyEntity, b: MoneyEntity): MoneyEntity => {
     if (a.currency !== b.currency) {
       throw new Error('Currencies must match');
     }
-    return new MoneyEntity(a.amount - b.amount, a.currency);
+    return new MoneyEntity(a.amount.minus(b.amount), a.currency);
   };
 }
