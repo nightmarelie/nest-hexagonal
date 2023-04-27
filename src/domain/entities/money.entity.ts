@@ -8,12 +8,13 @@ export class MoneyEntity {
 
   static equals(money1: MoneyEntity, money2: MoneyEntity) {
     return (
-      money1.amount === money2.amount && money1.currency === money2.currency
+      money1.amount.isEqualTo(money2.amount) &&
+      money1.currency === money2.currency
     );
   }
 
   static zero(currency: string): MoneyEntity {
-    return new MoneyEntity(new BigNumber(0), currency);
+    return new MoneyEntity(toBigNumber(0), currency);
   }
 
   static of(amount: BigNumber, currency: string): MoneyEntity {
@@ -33,7 +34,7 @@ export class MoneyEntity {
   }
 
   isPositiveOrZero() {
-    return this.amount.lte(0);
+    return this.amount.gte(toBigNumber(0));
   }
 
   static add = (a: MoneyEntity, b: MoneyEntity): MoneyEntity => {
@@ -47,6 +48,15 @@ export class MoneyEntity {
     if (a.currency !== b.currency) {
       throw new Error('Currencies must match');
     }
+
     return new MoneyEntity(a.amount.minus(b.amount), a.currency);
   };
 }
+
+export const toBigNumber = (amount: number): BigNumber => {
+  return new BigNumber(amount);
+};
+
+export const toNumber = (amount: BigNumber): number => {
+  return amount.toNumber();
+};
