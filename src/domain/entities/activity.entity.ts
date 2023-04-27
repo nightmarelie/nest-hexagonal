@@ -8,7 +8,7 @@ export class ActivityEntity {
     private readonly _targetAccountId: AccountId,
     private readonly _timestamp: Date,
     private readonly _money: MoneyEntity,
-    private readonly _id: number,
+    private readonly _id?: number,
   ) {}
 
   public get id(): number {
