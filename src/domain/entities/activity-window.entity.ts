@@ -18,13 +18,13 @@ export class ActivityWindowEntity {
     const depositeBalance = this.activities
       .filter((activity) => activity.targetAccountId === accountId)
       .map((activity) => activity.money)
-      .reduce(MoneyEntity.add, MoneyEntity.zero('USD'));
+      .reduce(MoneyEntity.add, MoneyEntity.zero());
 
     const withdrawalBalance = this.activities
       .filter((activity) => activity.sourceAccountId === accountId)
       .map((activity) => activity.money)
-      .reduce(MoneyEntity.add, MoneyEntity.zero('USD'));
+      .reduce(MoneyEntity.add, MoneyEntity.zero());
 
-    return MoneyEntity.add(depositeBalance, withdrawalBalance.negate('USD'));
+    return MoneyEntity.add(depositeBalance, withdrawalBalance.negate());
   }
 }

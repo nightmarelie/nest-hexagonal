@@ -50,7 +50,7 @@ describe('MoneyEntity', () => {
 
     const result = money.negate();
 
-    expect(result).toEqual(-10);
+    expect(result.amount).toEqual(-10);
   });
 
   it('should return true if money entity is positive or zero', () => {

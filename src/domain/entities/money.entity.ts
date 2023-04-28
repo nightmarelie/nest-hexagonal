@@ -19,8 +19,8 @@ export class MoneyEntity {
     return this._amount.toNumber();
   }
 
-  negate(): number {
-    return new MoneyEntity(toBigNumber(this.amount).negated()).amount;
+  negate(): MoneyEntity {
+    return new MoneyEntity(toBigNumber(this.amount).negated());
   }
 
   isPositiveOrZero() {

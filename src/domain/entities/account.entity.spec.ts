@@ -1,11 +1,11 @@
 import { AccountEntity } from './account.entity';
 import { ActivityWindowEntity } from './activity-window.entity';
 import { ActivityEntity } from './activity.entity';
-import { MoneyEntity, toBigNumber } from './money.entity';
+import { MoneyEntity } from './money.entity';
 
 describe('AccountEntity', () => {
   it('should be defined by standard initialization', () => {
-    const money = new MoneyEntity(toBigNumber(10), 'USD');
+    const money = MoneyEntity.of(10);
 
     const owner = new AccountEntity(1, money);
     const source = new AccountEntity(2, money);

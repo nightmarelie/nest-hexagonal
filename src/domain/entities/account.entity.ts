@@ -62,7 +62,7 @@ export class AccountEntity {
   private _mayWithdrawMoney(money: MoneyEntity) {
     return MoneyEntity.add(
       this.calculateBalance(),
-      money.negate('USD'),
+      money.negate(),
     ).isPositiveOrZero();
   }
 }
