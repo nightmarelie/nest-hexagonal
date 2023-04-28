@@ -33,7 +33,7 @@ export class AccountMapper {
         activity.sourceAccountId,
         activity.targetAccountId,
         new Date(activity.timestamp),
-        MoneyEntity.of(activity.amount, 'USD'),
+        MoneyEntity.of(activity.amount),
         activity.id,
       );
 

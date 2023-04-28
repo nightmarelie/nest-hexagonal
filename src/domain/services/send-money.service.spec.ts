@@ -33,7 +33,7 @@ describe('SendMoneyService', () => {
     const command = new SendMoneyCommand(
       sourceAccount.id,
       targetAccount.id,
-      MoneyEntity.of(300, 'USD'),
+      MoneyEntity.of(300),
     );
 
     const sendMoneyService = new SendMoneyService(

@@ -4,6 +4,7 @@ import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 export class AccountOrmEntity {
   @PrimaryGeneratedColumn()
   id: number;
+
   @Column()
   userId: number;
 }

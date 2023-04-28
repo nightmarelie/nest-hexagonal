@@ -23,7 +23,7 @@ export class SendMoneyController {
     const sendMoneyCommand = new SendMoneyCommand(
       sourceAccountId,
       targetAccountId,
-      MoneyEntity.of(amount, 'USD'),
+      MoneyEntity.of(amount),
     );
 
     const result = await this._sendMoneyService.sendMoney(sendMoneyCommand);
