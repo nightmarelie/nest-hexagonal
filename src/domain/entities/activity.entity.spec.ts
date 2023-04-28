@@ -1,5 +1,5 @@
 import { ActivityEntity } from './activity.entity';
-import { MoneyEntity, toBigNumber } from './money.entity';
+import { MoneyEntity } from './money.entity';
 
 describe('ActivityEntity', () => {
   const ownerAccountId = 1;
@@ -12,7 +12,7 @@ describe('ActivityEntity', () => {
       sourceAccountId,
       targetAccountId,
       new Date(),
-      new MoneyEntity(toBigNumber(10), 'USD'),
+      MoneyEntity.of(10),
     );
 
     expect(activity).toBeDefined();

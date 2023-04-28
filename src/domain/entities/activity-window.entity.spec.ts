@@ -1,6 +1,6 @@
 import { ActivityWindowEntity } from './activity-window.entity';
 import { ActivityEntity } from './activity.entity';
-import { MoneyEntity, toBigNumber } from './money.entity';
+import { MoneyEntity } from './money.entity';
 
 describe('ActivityWindowEntity', () => {
   const ownerAccountId = 1;
@@ -19,7 +19,7 @@ describe('ActivityWindowEntity', () => {
       sourceAccountId,
       targetAccountId,
       new Date(),
-      new MoneyEntity(toBigNumber(10), 'USD'),
+      MoneyEntity.of(10),
     );
 
     const activityWindow = new ActivityWindowEntity();
