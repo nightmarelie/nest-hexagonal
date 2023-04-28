@@ -1,21 +1,20 @@
-import { MoneyEntity, toBigNumber, toNumber } from './money.entity';
+import { MoneyEntity } from './money.entity';
 
 describe('MoneyEntity', () => {
   it('should be defined by standard initialization', () => {
-    expect(new MoneyEntity(toBigNumber(10), 'USD')).toBeDefined();
+    expect(MoneyEntity.of(10)).toBeDefined();
   });
 
   it('should statically create money entity', () => {
-    const money = MoneyEntity.of(toBigNumber(10), 'USD');
+    const money = MoneyEntity.of(10);
 
-    expect(money.amount).toEqual(toBigNumber(10));
-    expect(money.currency).toEqual('USD');
+    expect(money.amount).toEqual(10);
     expect(money).toBeInstanceOf(MoneyEntity);
   });
 
   it('should return true if money entities are equal', () => {
-    const money1 = new MoneyEntity(toBigNumber(10), 'USD');
-    const money2 = new MoneyEntity(toBigNumber(10), 'USD');
+    const money1 = MoneyEntity.of(10);
+    const money2 = MoneyEntity.of(10);
 
     const result = MoneyEntity.equals(money1, money2);
 
@@ -23,40 +22,39 @@ describe('MoneyEntity', () => {
   });
 
   it('should create zero money entity', () => {
-    const money = new MoneyEntity(toBigNumber(0), 'USD');
+    const money = MoneyEntity.of(0);
 
-    expect(money.amount).toEqual(toBigNumber(0));
-    expect(money.currency).toEqual('USD');
+    expect(money.amount).toEqual(0);
   });
 
   it('should add two money entities', () => {
-    const money1 = new MoneyEntity(toBigNumber(10), 'USD');
-    const money2 = new MoneyEntity(toBigNumber(20), 'USD');
+    const money1 = MoneyEntity.of(10);
+    const money2 = MoneyEntity.of(20);
 
     const result = MoneyEntity.add(money1, money2);
 
-    expect(result.amount).toEqual(toBigNumber(30));
+    expect(result.amount).toEqual(30);
   });
 
   it('should subtract two money entities', () => {
-    const money1 = new MoneyEntity(toBigNumber(10), 'USD');
-    const money2 = new MoneyEntity(toBigNumber(20), 'USD');
+    const money1 = MoneyEntity.of(10);
+    const money2 = MoneyEntity.of(20);
 
     const result = MoneyEntity.minus(money1, money2);
 
-    expect(result.amount).toEqual(toBigNumber(10).negated());
+    expect(result).toEqual(-10);
   });
 
   it('should negate a money entity', () => {
-    const money = new MoneyEntity(toBigNumber(10), 'USD');
+    const money = MoneyEntity.of(10);
 
-    const result = money.negate('USD');
+    const result = money.negate();
 
-    expect(result.amount).toEqual(toBigNumber(10).negated());
+    expect(result).toEqual(-10);
   });
 
   it('should return true if money entity is positive or zero', () => {
-    const money = new MoneyEntity(toBigNumber(10), 'USD');
+    const money = MoneyEntity.of(10);
 
     const result = money.isPositiveOrZero();
 
